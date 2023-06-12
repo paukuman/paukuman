@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<style>
+		body {
+			background-color: #000;
+			color: cyan;
+		}
+		.p::placeholder, .result::placeholder {
+			color: #fff;
+		}
+		.p {
+			width: -webkit-fill-available;
+			height: 500px;
+			border-radius: 2rem;
+			background-color: gray;
+			color: cyan;
+			border: none;
+			padding: 2rem;
+		}
+		.result {
+			width: -webkit-fill-available;
+			border-radius: 2rem;
+			border: none;
+			background-color: gray;
+			padding: 1rem .75rem;
+			color: cyan;
+			margin-bottom: 1rem;
+		}
+		</style>
+<h2>Tools Gabut PaukuMan</h2>
+<input class="result"/ placeholder="hasilnya disini coy">
+<textarea class="p" placeholder="masukkan teks disini"></textarea>
+<script>
+		
+	const p = document.querySelector('.p');
+	let r = document.querySelector('.result');
+	['paste','keyup','change'].map(e => {
+		window.addEventListener(e, () => {
+			setTimeout( async () => {
+			let i = p.value;
+			let s = i.split("\*")[1];
+			if(s) {
+				let changed = [{a:"\u00f7", b:"/"}, {a:"\u00d7", b:"*"}]
+				changed.map(e => s.indexOf(e.a) !== -1 ? s = s.replace(e.a, e.b) : false);
+			}
+			s = eval(s);
+			r.value = s;
+			}, 500);
+		});
+	});
+	</script>
+	
+	</body>
+	</html>
